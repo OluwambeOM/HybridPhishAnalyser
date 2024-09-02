@@ -41,7 +41,7 @@ def preprocess_text(text):
 def rules_based_filter(subject, body, sender_email=None, attachment_list=None):
     phishing_score = 0
 
-    # Expanded Phishing Keywords Check
+    # Phishing Keywords Check
     phishing_keywords = [
         'urgent', 'win', 'prize', 'click here', 'verify', 'account',
         'security alert', 'password', 'confirm', 'limited time',
@@ -82,9 +82,8 @@ def rules_based_filter(subject, body, sender_email=None, attachment_list=None):
             if any(attachment.lower().endswith(ext) for ext in suspicious_filetypes):
                 phishing_score += 2
 
-    # Define a threshold; adjust based on testing
+    # Define a threshold; 
     return 1 if phishing_score >= 5 else 0
-
 
 # Hybrid detection function
 def hybrid_detection(subject, body, sender_email=None, attachment_list=None):
@@ -96,7 +95,7 @@ def hybrid_detection(subject, body, sender_email=None, attachment_list=None):
     processed_text = preprocess_text(subject + " " + body)
     vectorized_text = vectorizer.transform([processed_text])
 
-    # Apply machine learning model with the adjusted threshold
+    # Apply machine learning model 
     prob = model.predict_proba(vectorized_text)[:, 1]
     return (prob >= optimal_threshold).astype(int)[0]
 
