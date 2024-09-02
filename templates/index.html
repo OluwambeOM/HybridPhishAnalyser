@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HYBRID PHISH ANALYSER</title>
+    <style>
+        /* Import Inter Font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap');
+
+        /* Background Gradient */
+        body {
+            background: linear-gradient(to bottom right, #6a0dad, #1e90ff);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Centered Form Container */
+        form {
+            background-color: #ffffff;
+            border: 2px solid #cccccc;
+            border-radius: 8px;
+            width: 75vw; /* 75% of viewport width */
+            max-width: 800px; /* Max width to keep it reasonable */
+            height: 75vh; /* 75% of viewport height */
+            padding: 50px 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Space between fields */
+            justify-content: center;
+        }
+
+        /* Form Styles */
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif; /* Apply Inter Normal */
+            font-weight: 400; /* Inter Normal */
+        }
+
+        input[type="text"]::placeholder,
+        input[type="email"]::placeholder,
+        textarea::placeholder {
+            color: #999999; /* Placeholder color */
+        }
+
+        textarea {
+            resize: vertical; /* Allows vertical resize only */
+        }
+
+        input[type="submit"] {
+            background-color: #1e90ff;
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif; /* Apply Inter Normal */
+            font-weight: 400; /* Inter Normal */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #4682b4;
+        }
+
+        h1, h2 {
+            color: white;
+            text-align: center;
+            margin: 0 0 20px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1 {
+            font-weight: 400; /* Inter Normal */
+            font-size: 50px;
+        }
+
+        h2 {
+            font-weight: 900; /* Inter Black */
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            font-family: 'Inter', sans-serif; /* Apply Inter Normal */
+            font-weight: 400; /* Inter Normal */
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #ffffff;
+            border-top: 2px solid #cccccc;
+            padding: 10px;
+            text-align: center;
+            color: #333333;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif; /* Apply Inter Normal */
+            font-weight: 400; /* Inter Normal */
+        }
+    </style>
+</head>
+<body>
+    <h1>Hybrid Phish Analyser</h1>
+    <form method="post">
+        <input type="text" id="subject" name="subject" placeholder="What is the email subject?" required><br>
+
+        <textarea id="body" name="body" rows="10" placeholder="Paste email content here..." required></textarea><br>
+
+        <input type="email" id="sender_email" name="sender_email" placeholder="Sender email here"><br>
+
+        <input type="text" id="attachments" name="attachment_list" placeholder="Indicate any attachment file format"><br>
+
+        <input type="submit" value="Check email for phishing">
+    </form>
+
+    {% if result is not none %}
+        <h2>Detection Result</h2>
+        <p>The email is <strong>{{ 'phishing' if result else 'not phishing' }}</strong>.</p>
+    {% endif %}
+
+    <footer>
+        Hybrid Phish Analyzer - A software system for detecting phishing emails that combines rules-based systems with machine learning and natural language processing. 2024
+    </footer>
+</body>
+</html>
+
